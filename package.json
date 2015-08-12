@@ -1,0 +1,11 @@
+{
+  "name": "fast-release-notes",
+  "version": "0.0.1",
+  "dependencies": {
+    "bluebird": "~2.9.34",
+    "markdown": "0.5.0",
+    "node-uuid": "1.4.3",
+    "restler": "3.3.0"
+  }
+}
+
