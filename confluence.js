@@ -32,13 +32,13 @@ function ConfluencePublisher(url, username, password){
           }
       }};
 
-      console.log("Content: " + data);
+      console.log("Content: " + JSON.stringify(data));
   
       rest.postJson(this.url + "/rest/api/content", data, {
           username: this.username,
           password: this.password,
         }).on('complete', function(r, p) {
-          if (r instanceof Error) j(r); else f(r);
+          if (r instanceof Error || p.statusCode >= 400) j(JSON.stringify(r)); else f(r);
         });
   
     }.bind(this));
