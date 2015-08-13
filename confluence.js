@@ -1,9 +1,10 @@
 "use strict";
 
-var fs   = require("fs");
-var rest = require("restler");
-var uuid = require("node-uuid");
-var Promise = require("bluebird");
+const fs      = require("fs");
+const md      = require("markdown").markdown;
+const rest    = require("restler");
+const uuid    = require("node-uuid");
+const Promise = require("bluebird");
 
 
 function ConfluencePublisher(url, username, password){
@@ -11,7 +12,6 @@ function ConfluencePublisher(url, username, password){
   this.url = url; 
   this.username = username;
   this.password = password;
-
 
   this.publish = function(space, title, content) {
 
@@ -57,7 +57,9 @@ fs.readFile(process.env.FILE, "UTF-8", (e, r) => {
 
   if (e) throw e;
 
-  console.log("Format: " + process.env.MARKDOWN == 1 ? "Markdown" : "Plain/HTML");
+  let markdownOn = (process.env.MARKDOWN == 1)
+
+  console.log("Format: " + (markdownOn ? "Markdown" : "Plain/HTML"));
   console.log("File: " + process.env.FILE);
 
   var cp = new ConfluencePublisher(
@@ -66,7 +68,7 @@ fs.readFile(process.env.FILE, "UTF-8", (e, r) => {
     process.env.PASSWORD
   )
 
-  cp.publish(process.env.SPACE, process.env.TITLE ? process.env.TITLE : uuid.v1(), r).then(
+  cp.publish(process.env.SPACE, process.env.TITLE ? process.env.TITLE : uuid.v1(), markdownOn ? md.toHTML(r) : r).then(
     (r) =>  console.log("OK!")
   );
 

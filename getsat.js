@@ -1,14 +1,16 @@
 "use strict";
 
-var fs   = require("fs");
-var rest = require("restler");
-var uuid = require("node-uuid");
-var Promise = require("bluebird");
+const fs      = require("fs");
+const md      = require("markdown").markdown;
+const rest    = require("restler");
+const uuid    = require("node-uuid");
+const Promise = require("bluebird");
 
-const GetSatPublisher = function(username, password){
+const GetSatPublisher = function(domain, username, password){
 
-  const URL = "https://api.getsatisfaction.com/topics.json?company_domain=servicerocket";
+  const URL = "https://api.getsatisfaction.com/topics.json";
 
+  this.domain = domain;
   this.username = username;
   this.password = password;
 
@@ -20,7 +22,7 @@ const GetSatPublisher = function(username, password){
     return new Promise(function(f, j) {
   
       let data = { topic: { 
-        company_domain: "servicerocket",
+        company_domain: this.domain,
         style: "update",
         products: [product],
         subject: subject,
@@ -43,8 +45,8 @@ const GetSatPublisher = function(username, password){
   };
 }
 
-if (!process.env.PRODUCT || !process.env.FILE || !process.env.USERNAME || !process.env.PASSWORD) {
-  throw new Error("One or more of these variables are missing: USERNAME, PASSWORD, SPACE, FILE");
+if (!process.env.PRODUCT || !process.env.FILE || !process.env.DOMAIN || !process.env.USERNAME || !process.env.PASSWORD) {
+  throw new Error("One or more of these variables are missing: DOMAIN, USERNAME, PASSWORD, SPACE, FILE");
 }
 
 
@@ -54,15 +56,18 @@ fs.readFile(process.env.FILE, "UTF-8", (e, r) => {
 
   if (e) throw e;
 
-  console.log("Format: " + (process.env.MARKDOWN == 1 ? "Markdown" : "Plain/HTML"));
+  let markdownOn = (process.env.MARKDOWN == 1)
+
+  console.log("Format: " + (markdownOn ? "Markdown" : "Plain/HTML"));
   console.log("File: " + process.env.FILE);
 
   var cp = new GetSatPublisher(
+    process.env.DOMAIN,
     process.env.USERNAME,
     process.env.PASSWORD
   )
 
-  cp.publish(process.env.PRODUCT, process.env.TITLE ? process.env.TITLE : uuid.v1(), r).then(
+  cp.publish(process.env.PRODUCT, process.env.TITLE ? process.env.TITLE : uuid.v1(), markdownOn ? md.toHTML(r) : r).then(
     (r) =>  console.log("OK!")
   );
 
