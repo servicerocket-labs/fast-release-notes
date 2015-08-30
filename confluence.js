@@ -2,12 +2,12 @@
 
 const fs      = require("fs");
 const md      = require("markdown").markdown;
+const tt      = require("textile-js");
 const rest    = require("restler");
 const uuid    = require("node-uuid");
 const Promise = require("bluebird");
 
-
-function ConfluencePublisher(url, username, password){
+function ConfluencePublisher(url, username, password) {
 
   this.url = url; 
   this.username = username;
@@ -55,17 +55,31 @@ if (!process.env.FILE && !process.env.CONTENT) {
   throw new Error("Content must be assigned to one of these variables: CONTENT, FILE");
 }
 
-var markdownOn = (process.env.MARKDOWN == 1);
 var content = process.env.CONTENT;
 if (!content) {
   content = fs.readFileSync(process.env.FILE, { encoding: 'UTF-8', flag: 'r' });
 }
-console.log("Format: " + (markdownOn ? "Markdown" : "Plain/HTML"));
+
+switch (process.env.MARKUP) {
+  case "text":
+    break;
+  case "markdown":
+    content = md.toHTML(content);
+    break;
+  case "textile": 
+    content = tt(content);
+    break;
+  default:
+    throw new Error("You must choose either one of the markup languages: MARKUP=text|markdown|textile");
+    break
+}
+
+console.log("Format: " + process.env.MARKUP.replace(process.env.MARKUP[0], process.env.MARKUP[0].toUpperCase()));
 console.log("File: " + process.env.FILE);
 
 new ConfluencePublisher(
   process.env.URL,
   process.env.USERNAME,
   process.env.PASSWORD
-).publish(process.env.SPACE, process.env.TITLE ? process.env.TITLE : uuid.v1(), markdownOn ? md.toHTML(content) : content).then((r) =>  console.log("OK!"));
+).publish(process.env.SPACE, process.env.TITLE ? process.env.TITLE : uuid.v1(), content).then((r) => console.log("OK!"));
 
