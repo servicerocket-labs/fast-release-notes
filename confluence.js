@@ -59,23 +59,18 @@ var content = process.env.CONTENT;
 if (!content) {
   content = fs.readFileSync(process.env.FILE, { encoding: 'UTF-8', flag: 'r' });
 }
-
-switch (process.env.MARKUP) {
-  case "text":
-    break;
-  case "markdown":
-    content = md.toHTML(content);
-    break;
-  case "textile": 
-    content = tt(content);
-    break;
-  default:
-    throw new Error("You must choose either one of the markup languages: MARKUP=text|markdown|textile");
-    break
+var format = process.env.MARKUP;
+if (format == "markdown") {
+  content = md.toHTML(content);
+} else if (format == "textile") {
+  content = tt(content);
+} else if (format != "html") {
+  throw new Error("Markup must be one of the following: html (default), markdown or textile");
 }
 
-console.log("Format: " + process.env.MARKUP.replace(process.env.MARKUP[0], process.env.MARKUP[0].toUpperCase()));
+console.log("Format: " + format);
 console.log("File: " + process.env.FILE);
+console.log("Content: " + content);
 
 new ConfluencePublisher(
   process.env.URL,
