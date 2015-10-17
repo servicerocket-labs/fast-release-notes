@@ -7,11 +7,17 @@ export const cliCommands = {
   getSatAnnouncement: 'getsat-announcement'
 };
 
+export const allowedMarkupTypes = {
+  html: 'html',
+  markdown: 'markdown',
+  textile: 'textile'
+};
+
 const optionsValidation = Joi.object().keys({
   username: Joi.string(),
   password: Joi.string(),
   title: Joi.string(),
-  markup: Joi.any(['html', 'markdown', 'textile']),
+  markup: Joi.any(_.values(allowedMarkupTypes)),
   confUrl: Joi.string().allow(null),
   confSpaceKey: Joi.string().allow(null),
   getSatDomain: Joi.string().allow(null),

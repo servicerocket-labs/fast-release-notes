@@ -1,26 +1,30 @@
 import {options, command, cliCommands} from './cli/cli';
-import {parseContentOtherwiseReadFile} from './utils/content-parser';
+import {parseContentOtherwiseReadFile, convert} from './utils/content-parser';
 import ConfluencePublisher from './publishers/confluence-publisher';
 import GetSatPublisher from './publishers/getsat-publisher';
 
 const {confluenceBlogpost, getSatAnnouncement} = cliCommands;
 
+let {
+  content,
+  file
+} = options;
+
+const {
+  getSatDomain,
+  username,
+  password,
+  title,
+  getSatProduct,
+  markup,
+  confUrl,
+  confSpaceKey
+} = options;
+
 async function publishConfluence() {
-  const {
-    confUrl,
-    username,
-    password,
-    confSpaceKey,
-    title
-  } = options;
-
-  let {
-    content,
-    file
-  } = options;
-
   try {
     content = await parseContentOtherwiseReadFile(content, file);
+    content = await convert(content, markup);
 
     let confluencePublisher = new ConfluencePublisher({
       url: confUrl,
@@ -38,21 +42,10 @@ async function publishConfluence() {
 }
 
 async function publishGetSat() {
-  const {
-    getSatDomain,
-    username,
-    password,
-    title,
-    getSatProduct
-  } = options;
-
-  let {
-    content,
-    file
-  } = options;
 
   try {
     content = await parseContentOtherwiseReadFile(content, file);
+    content = await convert(content, markup);
 
     let getSatPublisher = new GetSatPublisher({
       domain: getSatDomain,

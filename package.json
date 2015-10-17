@@ -15,7 +15,8 @@
     "restler": "3.3.0",
     "superagent": "^1.4.0",
     "superagent-bluebird-promise": "^2.1.0",
-    "textile-js": "1.0.1"
+    "textile-js": "1.0.1",
+    "xss": "^0.2.7"
   },
   "description": "This script is meant to reduce the fixed time spent on release note publication.",
   "main": "index.js",
