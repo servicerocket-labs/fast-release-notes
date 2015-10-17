@@ -1,6 +1,6 @@
 {
   "name": "@servicerocket/tools-fast-release-notes",
-  "version": "0.1.1",
+  "version": "1.0.0",
   "bin": {
     "fast-release-notes": "./bin/fast-release-notes.js"
   },
@@ -20,7 +20,9 @@
   "description": "This script is meant to reduce the fixed time spent on release note publication.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "babel src/ -d lib/",
+    "prepublish": "npm run build"
   },
   "repository": {
     "type": "git",
@@ -30,5 +32,8 @@
     "registry": "https://ld-npm.performancerocket.com/"
   },
   "author": "ServiceRocket Tools",
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "babel": "^5.8.23"
+  }
 }
