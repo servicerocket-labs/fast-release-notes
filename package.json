@@ -30,7 +30,7 @@
     "url": "ssh://git@tools-git.servicerocket.com:7999/do/fast-release-notes.git"
   },
   "publishConfig": {
-    "registry": "https://ld-npm.performancerocket.com/"
+    "registry": "https://npm.performancerocket.com/"
   },
   "author": "ServiceRocket Tools",
   "license": "ISC",
