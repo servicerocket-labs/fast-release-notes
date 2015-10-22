@@ -1,0 +1,9 @@
+language: node_js
+deploy:
+  provider: npm
+  email: faiz.hasim+npm@servicerocket.com
+  api_key:
+    secure: vS9pr9TO7vJ4evyCGl1FF4Ta+UbyBvYOLmmJQ+3Qbwk8KgZteTU1S+GjMY1Km3nedcatpyX0K42IVEiA7so+38sp7Aer9Hv/YDBvpmgyuUecrV8mftEBiDHsL9A6rE3oJglx/8nRbNmVWFTNmb4BPkUAlHGIUWaKZ+QOuxJzr3FwCP29eLHJHd0UghGyHyP7/0bWGDA2lZuAIkXOimiHB/TnBayYcDHL6khEDqhpuef9EgdcyQNJKWJA8GsC0D8z9UsKDpd5xhGUgoWD/CgAygq8gXmrjvux6MJGezyUkGmBpMTbsGhtgW/wCXCcZuR+62NvwOG1zh6+j8R4PZsr23xeC29P4HJTngXCgfHIzEri18TV9RRJP2BD77A5GmCMxx35O6h06jhb/RzhkqtGaHchkVsqtDUuycXs01Y1hxWUalXfBE5+0lrPALnd/AV0eFpfL+5CdK3ko5tmDc2Z3NyXx32aGlGsNP/xwEy9kkBMM8mh1+ymQhLs9IxPBHyfD7N1v/A9lJyprXhkBgaC1aW9Gk+3Z/CaaYu5aEt0w8TFK7vkFFNqxuJ7l0Dh+5oyDX1m7MCSxdeyB26lEp5jNpXFJimNRCQ7syfdXjGhoac0WA+JIEhweL6JN2YbzJwutp+OpgEuTlR+eB7wtufyF2ECBKA1NZDKQ1ktlXKTqxQ=
+  on:
+    tags: true
+    repo: ServiceRocket/fast-release-notes

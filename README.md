@@ -1,6 +1,8 @@
 # Fast Publish
 
-This script is meant to reduce the fixed time spent on release note publication.
+> Reduce the fixed time spent on release note publication.
+
+[![Build Status][travis-image]][travis-url]
 
 ## Getting Started
 
@@ -42,3 +44,7 @@ Or to GetSatisfaction:
 When required variables are not provided, you should receive an error, otherwise you may identify them, e.g
 
     cat confluence.js  | grep -E "[A-Z]{2,}"
+
+
+[travis-url]: https://travis-ci.org/ServiceRocket/fast-release-notes
+[travis-image]: https://travis-ci.org/ServiceRocket/fast-release-notes.svg
