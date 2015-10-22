@@ -7,3 +7,9 @@ deploy:
   on:
     tags: true
     repo: ServiceRocket/fast-release-notes
+notifications:
+  hipchat:
+    matrix:
+    - 6737049b378684a17b185bd7d6bc46@119280
+    rooms:
+      secure: NfAjqhEj7BpScVAZcKBDQdEPF43lH+CWMj0LSAhLNGUbTJPO/+68rF/kHh4ZWX1cMC+mmRxmAvdQienBQMlZF6fznct/Os4gqrXH/7E7d6bhZkRN4VVX0iUteFXLbx2g4J5QVBryb++c/BkwnWrIobaRhv2DNlY/bfgmxh31NcYxJevA6KvknFlvDK5tOVPPCh5Kn/a+d4sI8+C1cX9/mo25u+SM1laNYQXz43EguVTszeVQz66JwBgEG1gy4GLGC5pl5g7IaDWI06IB7Z5lIhdCshbvsjZAMzd+FIijJy8ix7aZKDAmncujvRrjtFtbsxTSScVGJVvqgt0TIezLnfJI3RWESzCBjm1gSxRUd7+S2mnA3exJyrfh1/c9k7USYsQhsuZ+ygaITwwj2RuIGREELHAKt8xUaXzOGmN/gJ72+6c2H0BLk2bBQP2ner8Bp+zJkUltFxIQsUpJt3GxVva1bQxtEFAsLxI7G9+APOMgcPj8Kii9Dwv9ezXng0b+Fcl7U6GrFkYxsRKuP+AJiJyVZ8Yv5R3pfu44K/TE4DKdvGpXP3aFqa8QwK5hlXmO6dkHKz3rqWOFQzl/XrU2hskKJLAGN3dFicNR/e+NJG38gPVkDEtb6hkrjeEdqRb11c6g6lWq3xWpH3kTkoFqrpyzaSpaS75Ex1DmlcU39Zw=
