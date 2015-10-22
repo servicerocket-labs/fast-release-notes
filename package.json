@@ -30,9 +30,6 @@
     "type": "git",
     "url": "git@github.com:ServiceRocket/fast-release-notes.git"
   },
-  "publishConfig": {
-    "registry": "https://npm.performancerocket.com/"
-  },
   "author": "ServiceRocket Engineering",
   "license": "ISC",
   "devDependencies": {
