@@ -6,7 +6,7 @@
 
 ## Getting Started
 
-    npm install @servicerocket/tools-fast-release-notes -g --registry=https://ld-npm.performancerocket.com/
+    npm install fast-release-notes -g
     
 ## CLI Help
 
